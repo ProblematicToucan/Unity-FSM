@@ -4,9 +4,10 @@ namespace Script.Player.FSM
 {
     public class PlayerStateManager : MonoBehaviour
     {
-        public PlayerBaseState CurrenState;
+        public bool isGrounded;
         private PlayerStateFactory _states;
-        
+        public PlayerBaseState CurrentState;
+
         private void Awake()
         {
             _states = new PlayerStateFactory(this);
@@ -14,13 +15,23 @@ namespace Script.Player.FSM
 
         private void Start()
         {
-            CurrenState = _states.Normal();
-            CurrenState.EnterState();
+            CurrentState = _states.Normal();
+            CurrentState.EnterStates();
         }
 
         private void Update()
         {
-            CurrenState.UpdateState();
+            CurrentState.UpdateStates();
+        }
+
+        private void FixedUpdate()
+        {
+            CurrentState.PhysicsUpdateStates();
+        }
+
+        private void OnDisable()
+        {
+            CurrentState.ExitStates();
         }
 
         #region Primitive Methods
@@ -28,26 +39,21 @@ namespace Script.Player.FSM
         [ContextMenu("State Machine/Normal")]
         public void PlayNormalState()
         {
-            CurrenState.TransitionToState(_states.Normal());
+            CurrentState.TransitionToState(_states.Normal());
         }
 
         [ContextMenu("State Machine/Combat")]
         public void PlayCombatState()
         {
-            CurrenState.TransitionToState(_states.Combat());
+            CurrentState.TransitionToState(_states.Combat());
         }
 
         [ContextMenu("State Machine/Dead")]
         public void PlayDeadState()
         {
-            CurrenState.TransitionToState(_states.Dead());
+            CurrentState.TransitionToState(_states.Dead());
         }
 
         #endregion
-
-        private void OnDisable()
-        {
-            CurrenState.ExitState();
-        }
     }
 }

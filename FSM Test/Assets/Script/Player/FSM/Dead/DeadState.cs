@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Script.Player.FSM
+namespace Script.Player.FSM.Dead
 {
     public class DeadState : PlayerBaseState
     {
@@ -10,17 +10,28 @@ namespace Script.Player.FSM
 
         public override void EnterState()
         {
-            Debug.Log("Enter Dead State");
+            Debug.Log("Enter " + GetType().Name);
         }
 
         public override void UpdateState()
         {
-            Debug.Log("Update Dead State");
+        }
+
+        public override void PhysicsUpdateState()
+        {
         }
 
         public override void ExitState()
         {
-            Debug.Log("Exit Dead State");
+            Debug.Log("Exit " + GetType().Name);
+        }
+
+        public override void InitializeSubState()
+        {
+        }
+
+        public override void CheckTransitionToState()
+        {
         }
     }
 }

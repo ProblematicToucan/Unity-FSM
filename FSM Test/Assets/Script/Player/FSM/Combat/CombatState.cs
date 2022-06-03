@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Script.Player.FSM
+namespace Script.Player.FSM.Combat
 {
     public class CombatState : PlayerBaseState
     {
@@ -10,17 +10,28 @@ namespace Script.Player.FSM
 
         public override void EnterState()
         {
-            Debug.Log("Enter Combat State");
+            Debug.Log("Enter " + GetType().Name);
         }
 
         public override void UpdateState()
         {
-            Debug.Log("Update Combat State");
+        }
+
+        public override void PhysicsUpdateState()
+        {
         }
 
         public override void ExitState()
         {
-            Debug.Log("Exit Combat State");
+            Debug.Log("Exit " + GetType().Name);
+        }
+
+        public override void InitializeSubState()
+        {
+        }
+
+        public override void CheckTransitionToState()
+        {
         }
     }
 }

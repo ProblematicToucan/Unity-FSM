@@ -407,3 +407,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ac4b40006bbcab7adf39af1b88e731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrounded: 1
